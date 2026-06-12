@@ -13,16 +13,12 @@
 
 AegisIQ is a full-stack Machine Learning application designed to assess life insurance premium risk tiers based on dynamic demographic and lifestyle factors. It features a decoupled microservice architecture with a standalone **FastAPI backend** and a beautiful, interactive **Streamlit dashboard**.
 
----
-
 ## ✨ Key Features
 
 - **End-to-End ML Pipeline**: Custom data processing, feature engineering (BMI & Lifestyle logic), and a highly optimized Random Forest Classifier.
 - **FastAPI Microservice**: A lightning-fast REST API backend that handles data validation (via Pydantic) and serves model inferences.
 - **Interactive Dashboard**: A premium, white-labeled Streamlit UI with Plotly data visualization, dynamic theme adaptation, and data explorers.
 - **Automated PDF Reporting**: Generates native, branded PDF risk assessment reports instantly on the frontend using `fpdf2`.
-
----
 
 ## 🛠️ Tech Stack
 
@@ -34,7 +30,21 @@ AegisIQ is a full-stack Machine Learning application designed to assess life ins
 | **Document Gen**     | FPDF2                                    |
 | **Cloud Hosting**    | Streamlit Cloud (Frontend), Render (API) |
 
----
+## 📈 Model Performance
+
+Trained on 500 synthetic records, 80/20 stratified train-test split.
+
+| Metric | Value |
+|--------|-------|
+| **Accuracy** | **91.0%** |
+| **F1 Score (weighted)** | **0.9086** |
+| **CV Mean Accuracy (5-fold)** | **83.6% ± 2.06%** |
+
+| Class | Precision | Recall | F1 |
+|-------|-----------|--------|----|
+| High | 0.93 | 0.76 | 0.84 |
+| Low | 0.90 | 0.90 | 0.90 |
+| Medium | 0.91 | 0.95 | 0.93 |
 
 ## 📁 Repository Structure
 
@@ -56,8 +66,6 @@ AegisIQ/
 ├── modelTrain.ipynb               # Original EDA & Model prototyping notebook
 └── requirements.txt               # Production dependencies
 ```
-
----
 
 ## 🧠 Machine Learning Architecture
 
@@ -84,8 +92,6 @@ AegisIQ utilizes a robust **Random Forest Classifier** ensemble trained to categ
 - **Data Pipeline**: The model leverages a Scikit-Learn `ColumnTransformer` to handle one-hot encoding for categorical variables (like `occupation` and `city_tier`) while passing numerical data directly through.
 - **Why Random Forest?**: Insurance underwriting data is highly non-linear (e.g., age and BMI compound each other's risk). Decision trees natively capture these complex, non-linear interactions better than standard linear models.
 
----
-
 ## 📊 Dataset & Feature Engineering
 
 The model is trained on a synthetic dataset (`dataset/insurance_data_500.csv`) representing 500 unique applicants. Before training, the raw data undergoes strict feature engineering to mimic real-world actuarial logic:
@@ -93,8 +99,6 @@ The model is trained on a synthetic dataset (`dataset/insurance_data_500.csv`) r
 1. **Age Grouping**: Raw `age` is bucketed into distinct life stages (`young`, `adult`, `middle_aged`, `senior`) to capture non-linear mortality risks.
 2. **Lifestyle Risk Matrix**: A custom engineered feature that compounds risk. For example, being a smoker is risky, but being a smoker _while_ having a BMI > 30 is flagged as `high` lifestyle risk.
 3. **Core Health Indicators**: **BMI** (Body Mass Index) is dynamically calculated from height and weight on the frontend and passed to the backend, serving as the strongest baseline indicator for health risk.
-
----
 
 ## 🚀 How to Run Locally
 
@@ -130,12 +134,10 @@ python -m streamlit run streamlit_app.py
 
 _The dashboard will automatically open in your browser at `http://localhost:8501` and connect to your local backend._
 
----
-
 ## 🌍 Live Deployment
 
 - **Web App:** [https://aegisiq.streamlit.app](https://aegisiq.streamlit.app)
-
----
+- **API Backend:** https://aegisiq-hk29.onrender.com
+- **API Docs (Swagger):** https://aegisiq-hk29.onrender.com/docs
 
 *Made by [Nishkarshs1](https://github.com/nishkarshs1)*
