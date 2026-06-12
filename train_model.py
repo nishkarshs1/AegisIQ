@@ -1,5 +1,5 @@
 """
-Insurance Premium Prediction — Model Training Script
+Insurance Premium Prediction - Model Training Script
 =====================================================
 Replaces the Colab notebook (modelTrain.ipynb) with a reproducible local script.
 
@@ -27,7 +27,7 @@ from sklearn.metrics import (
 
 # ── Paths ────────────────────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
-CSV_PATH = BASE_DIR / "insurance_data_500.csv"
+CSV_PATH = BASE_DIR / "dataset" / "insurance_data_500.csv"
 MODEL_DIR = BASE_DIR / "model"
 MODEL_PATH = MODEL_DIR / "model.pkl"
 
@@ -60,7 +60,7 @@ def age_group(age: int) -> str:
 df_feat["age_group"] = df_feat["age"].apply(age_group)
 
 
-# Feature 3: Lifestyle Risk  (FIXED — uses AND, not OR, for medium)
+# Feature 3: Lifestyle Risk
 def lifestyle_risk(row) -> str:
     if row["smoker"] and row["bmi"] > 30:
         return "high"

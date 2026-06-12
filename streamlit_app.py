@@ -1,5 +1,5 @@
 """
-AegisIQ — Intelligent Risk Assessment Platform
+AegisIQ - Intelligent Risk Assessment Platform
 ================================================
 Multi-page Streamlit app leveraging native Streamlit components and Plotly.
 """
@@ -20,7 +20,7 @@ from pathlib import Path
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
 PREDICT_URL = f"{BACKEND_URL}/predict"
 BASE_DIR = Path(__file__).parent
-CSV_PATH = BASE_DIR / "insurance_data_500.csv"
+CSV_PATH = BASE_DIR / "dataset" / "insurance_data_500.csv"
 MODEL_PATH = BASE_DIR / "model" / "model.pkl"
 
 OCCUPATIONS = [
@@ -47,7 +47,7 @@ THEME = {
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="AegisIQ — Intelligent Risk Assessment",
+    page_title="AegisIQ - Intelligent Risk Assessment",
     page_icon="💠",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -126,7 +126,7 @@ with st.sidebar:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  PAGE 1 — PREDICT
+#  PAGE 1 - PREDICT
 # ══════════════════════════════════════════════════════════════════════════════
 if page == "⚡ Predict":
     render_hero()
@@ -234,13 +234,13 @@ if page == "⚡ Predict":
                 except: err_detail = resp.text
                 st.error(f"API Error ({resp.status_code}): {err_detail}")
         except requests.exceptions.ConnectionError:
-            st.error(f"Connection Failed — Cannot reach backend at `{BACKEND_URL}`. Is the FastAPI server running?")
+            st.error(f"Connection Failed - Cannot reach backend at `{BACKEND_URL}`. Is the FastAPI server running?")
         except Exception as e:
             st.error(f"Unexpected Error: {e}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  PAGE 2 — HOW IT WORKS
+#  PAGE 2 - HOW IT WORKS
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "🔬 How It Works":
     render_hero()
@@ -256,15 +256,15 @@ elif page == "🔬 How It Works":
     | 🎂 age | `age_group` | `young` (<25) · `adult` (<45) · `middle_aged` (<60) · `senior` (60+) |
     | 🚬 smoker + BMI | `lifestyle_risk` | `high` (smoker & BMI>30) · `medium` (smoker & BMI>27) · `low` (else) |
     | 🏙️ city | `city_tier` | `Tier 1` (metros) · `Tier 2` (major cities) · `Tier 3` (others) |
-    | 💰 income_lpa | `income_lpa` | Passed directly — annual income in lakhs per annum |
-    | 👔 occupation | `occupation` | One-hot encoded — 8 categorical columns |
+    | 💰 income_lpa | `income_lpa` | Passed directly - annual income in lakhs per annum |
+    | 👔 occupation | `occupation` | One-hot encoded - 8 categorical columns |
     """)
 
     st.divider()
 
     st.header("💡 Why These Features Matter")
     with st.expander("⚖️ BMI (Body Mass Index)", expanded=True):
-        st.write("The strongest health indicator used by insurers. Higher BMI tightly correlates with diabetes, heart disease, and joint problems — dramatically increasing claim likelihood.")
+        st.write("The strongest health indicator used by insurers. Higher BMI tightly correlates with diabetes, heart disease, and joint problems - dramatically increasing claim likelihood.")
     with st.expander("🎂 Age Group"):
         st.write("Insurance risk increases non-linearly with age. Bucketing into groups captures life-stage patterns: young people have fewer claims, while seniors have chronic conditions.")
     with st.expander("🚬 Lifestyle Risk"):
@@ -274,7 +274,7 @@ elif page == "🔬 How It Works":
 
     st.divider()
 
-    st.header("🌲 The Model — Random Forest")
+    st.header("🌲 The Model - Random Forest")
     st.write("An ensemble of **200 decision trees** that vote on the final prediction.")
     
     col1, col2 = st.columns(2)
@@ -285,7 +285,7 @@ elif page == "🔬 How It Works":
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  PAGE 3 — MODEL PERFORMANCE
+#  PAGE 3 - MODEL PERFORMANCE
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "📊 Model Performance":
     st.title("📊 Model Performance")
@@ -339,7 +339,7 @@ elif page == "📊 Model Performance":
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  PAGE 4 — DATA EXPLORER
+#  PAGE 4 - DATA EXPLORER
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "🗂️ Data Explorer":
     st.title("🗂️ Data Explorer")

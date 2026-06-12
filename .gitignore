@@ -9,6 +9,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+model/__pycache__/
 
 # Jupyter Notebooks
 .ipynb_checkpoints
@@ -33,3 +34,4 @@ Thumbs.db
 
 # Project Specific Unwanted/Backup Files
 theActualFIleBeforeSeperationOfLogic.py
+
