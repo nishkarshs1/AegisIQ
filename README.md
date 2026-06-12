@@ -73,9 +73,9 @@ sequenceDiagram
     S->>F: POST /predict (JSON payload)
     F->>F: Validates data (Pydantic)
     F->>M: Executes Feature Engineering
-    M-->>F: Returns Risk Tier & Probability
+    M-->>F: Returns Risk Tier and Probability
     F-->>S: JSON Response
-    S-->>U: Renders interactive UI & PDF Report
+    S-->>U: Renders interactive UI and PDF Report
 ```
 
 AegisIQ utilizes a robust **Random Forest Classifier** ensemble trained to categorize applicants into three distinct risk tiers: `Low`, `Medium`, and `High`.
