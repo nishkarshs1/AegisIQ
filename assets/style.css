@@ -4,9 +4,8 @@ html, body, [class*="css"] {
     font-family: 'Inter', sans-serif !important;
 }
 
-/* Hide Streamlit footer and top header toolbar (white-labeling) */
+/* Hide Streamlit footer (white-labeling) */
 footer {visibility: hidden;}
-header {visibility: hidden;}
 
 /* Custom hero animation */
 .hero {
