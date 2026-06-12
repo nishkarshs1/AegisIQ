@@ -5,6 +5,8 @@ Multi-page Streamlit app leveraging native Streamlit components and Plotly.
 """
 
 import os
+import json
+from pdf_generator import generate_risk_report
 import base64
 import pickle
 import streamlit as st
@@ -38,7 +40,7 @@ OCCUPATION_LABELS = {
 }
 
 THEME = {
-    "Low":    {"color": "#63C5B5", "emoji": "✅", "label": "LOW RISK"},
+    "Low":    {"color": "#6CAEF9", "emoji": "✅", "label": "LOW RISK"},
     "Medium": {"color": "#FFAB00", "emoji": "⚠️", "label": "MEDIUM RISK"},
     "High":   {"color": "#C85A64", "emoji": "🚨", "label": "HIGH RISK"},
 }
@@ -214,6 +216,18 @@ if page == "⚡ Predict":
                     margin=dict(l=0, r=0, t=20, b=0)
                 )
                 st.plotly_chart(fig, use_container_width=True)
+
+                st.divider()
+                st.subheader("📥 Export")
+                
+                pdf_bytes = generate_risk_report(payload, category, confidence * 100, THEME)
+                st.download_button(
+                    label="Download PDF Report",
+                    data=pdf_bytes,
+                    file_name="AegisIQ_Risk_Report.pdf",
+                    mime="application/pdf",
+                    use_container_width=True
+                )
 
             else:
                 try: err_detail = resp.json().get("error", resp.text)
