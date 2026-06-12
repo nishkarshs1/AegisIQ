@@ -138,4 +138,4 @@ _The dashboard will automatically open in your browser at `http://localhost:8501
 
 ---
 
-_Built by [Nishkarshs1](https://github.com/nishkarshs1) for ML Portfolio showcasing End-to-End Machine Learning Engineering._
+*Made by [Nishkarshs1](https://github.com/nishkarshs1)*
