@@ -17,7 +17,10 @@ import plotly.graph_objects as go
 from pathlib import Path
 
 # ── Config ───────────────────────────────────────────────────────────────────
-BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
+try:
+    BACKEND_URL = st.secrets.get("BACKEND_URL", os.environ.get("BACKEND_URL", "http://localhost:8000"))
+except Exception:
+    BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
 PREDICT_URL = f"{BACKEND_URL}/predict"
 BASE_DIR = Path(__file__).parent
 CSV_PATH = BASE_DIR / "dataset" / "insurance_data_500.csv"
