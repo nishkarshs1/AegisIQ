@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Hide Streamlit footer and top header toolbar (white-labeling) */
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Custom hero animation */
+.hero {
+    text-align: center;
+    padding: 1rem;
+    animation: fadeSlideUp 0.8s ease;
+}
+.hero-logo {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 18px rgba(0,229,255,0.5));
+}
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-8px); }
+}
+
+/* Make headers pop slightly more */
+h1 {
+    font-weight: 800 !important;
+    letter-spacing: -1px !important;
+}
+
+/* Soften the expander borders */
+.streamlit-expanderHeader {
+    font-weight: 600 !important;
+}

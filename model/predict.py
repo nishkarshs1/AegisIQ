@@ -1,8 +1,10 @@
 import pickle
+from pathlib import Path
 import pandas as pd
 
-# import the ml model
-with open('model/model.pkl', 'rb') as f:
+# import the ml model — resolve path relative to this file, not CWD
+_MODEL_PATH = Path(__file__).parent / "model.pkl"
+with open(_MODEL_PATH, "rb") as f:
     model = pickle.load(f)
 
 

@@ -10,8 +10,8 @@ class UserInput(BaseModel):
     income_lpa: Annotated[float, Field(..., gt=0, description='Annual salary of the user in lpa')]
     smoker: Annotated[bool, Field(..., description='Is user a smoker')]
     city: Annotated[str, Field(..., description='The city that the user belongs to')]
-    occupation: Annotated[Literal['retired', 'freelancer', 'student', 'government_job',
-       'business_owner', 'unemployed', 'private_job'], Field(..., description='Occupation of the user')]
+    occupation: Annotated[Literal['retired', 'freelancer', 'student', 'public_sector',
+       'business_owner', 'unemployed', 'private_sector', 'self_employed'], Field(..., description='Occupation of the user')]
     
 
     # Second Improvement
@@ -34,7 +34,7 @@ class UserInput(BaseModel):
     def lifestyle_risk(self) -> str:
         if self.smoker and self.bmi > 30:
             return "high"
-        elif self.smoker or self.bmi > 27:
+        elif self.smoker and self.bmi > 27:
             return "medium"
         else:
             return "low"
