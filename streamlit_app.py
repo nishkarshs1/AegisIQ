@@ -58,12 +58,12 @@ st.set_page_config(
 
 # ── Load Assets ─────────────────────────────────────────────────────────────
 @st.cache_data
-def load_asset(filename):
+def load_css_asset(filename):
     with open(BASE_DIR / "assets" / filename, "r", encoding="utf-8") as f:
         return f.read()
 
-CSS_CONTENT = load_asset("style.css")
-SHIELD_SVG = load_asset("shield.svg")
+CSS_CONTENT = load_css_asset("style.css")
+SHIELD_SVG = load_css_asset("shield.svg")
 _shield_b64 = base64.b64encode(SHIELD_SVG.strip().encode()).decode()
 
 st.markdown(f"<style>{CSS_CONTENT}</style>", unsafe_allow_html=True)
@@ -159,8 +159,8 @@ if page == "⚡ Predict":
             "city": city.strip(), "occupation": occupation,
         }
         try:
-            with st.spinner("Analyzing profile..."):
-                resp = requests.post(PREDICT_URL, json=payload, timeout=15)
+            with st.spinner("Analyzing profile... (Note: First prediction may take up to 50s to wake up the cloud server)"):
+                resp = requests.post(PREDICT_URL, json=payload, timeout=60)
             
             if resp.status_code == 200:
                 data = resp.json()
@@ -238,6 +238,8 @@ if page == "⚡ Predict":
                 st.error(f"API Error ({resp.status_code}): {err_detail}")
         except requests.exceptions.ConnectionError:
             st.error(f"Connection Failed - Cannot reach backend at `{BACKEND_URL}`. Is the FastAPI server running?")
+        except requests.exceptions.ReadTimeout:
+            st.error("The cloud backend took too long to wake up from sleep mode. It should be awake now—please click 'Predict' again!")
         except Exception as e:
             st.error(f"Unexpected Error: {e}")
 
