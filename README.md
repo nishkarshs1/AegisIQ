@@ -134,8 +134,26 @@ python -m streamlit run streamlit_app.py
 
 _The dashboard will automatically open in your browser at `http://localhost:8501` and connect to your local backend._
 
+## 🐳 Run with Docker
+
+You can pull the official container image from [Docker Hub](https://hub.docker.com/r/nishkarshs1/aegisiq) or run instantly using Docker:
+
+```bash
+# Pull and run directly from Docker Hub
+docker run -d -p 8501:8501 -p 8000:8000 --name aegisiq nishkarshs1/aegisiq:latest
+```
+
+Or using docker-compose:
+
+```bash
+docker-compose up -d
+```
+
+Access the Streamlit Dashboard at `http://localhost:8501` and FastAPI docs at `http://localhost:8000/docs`.
+
 ## 🌍 Live Deployment
 
+- **Docker Hub Repository:** [hub.docker.com/r/nishkarshs1/aegisiq](https://hub.docker.com/r/nishkarshs1/aegisiq)
 - **Web App:** [https://aegisiq.streamlit.app](https://aegisiq.streamlit.app)
 - **API Backend:** https://aegisiq-hk29.onrender.com
 - **API Docs (Swagger):** https://aegisiq-hk29.onrender.com/docs

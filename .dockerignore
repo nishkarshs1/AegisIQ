@@ -1,0 +1,14 @@
+.git
+.gitignore
+myenv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+theActualFIleBeforeSeperationOfLogic.py
+README.md
+Dockerfile
+docker-compose.yml
+.dockerignore
